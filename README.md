@@ -8,7 +8,7 @@ Este repositório contém todo o roteiro, conforme solicitado no desafio:
 
 Passos realizados
 
-Prints de tela (setup, fluxo e execução) link para o PDF
+Prints de tela (setup, fluxo e execução) [PDF]
 
 Agente configurado
 
@@ -22,7 +22,7 @@ Deployment
 
 🎯 **Descrição do Projeto**
 
-O Meeting Summarizer é um agente de eficiência criado no Azure AI Foundry com o objetivo de ajudar usuários a processar rapidamente anotações longas de reuniões, transformando-as em resumos concisos e acionáveis (3 bullet points).
+O Meeting Summarizer TOPBLASTER é um agente de eficiência criado no Azure AI Foundry com o objetivo de ajudar usuários a processar rapidamente anotações longas de reuniões, transformando-as em resumos concisos e acionáveis (3 bullet points).
 
 Ele é especializado em resumir e registrar informações de reuniões, e NÃO responde sobre assuntos fora deste escopo.
 Ele está integrado a um workflow no Logic Apps via HTTP POST, que realiza a ação funcional do projeto: consultar documentos externos ou APIs. Ela executa uma requisição HTTP POST/GET em uma URI fornecida, permitindo buscar ou registrar dados (como a ata completa de uma reunião) em sistemas externos. Forneça a URI e o conteúdo necessário para a requisição. 
@@ -71,11 +71,12 @@ Detalhe
 Valor Aplicado
 
 Ferramenta do Foundry
+
 Ação de Conexão Externa HTTP
 
 Tool Name no Agente
 
-ConexaoExterna_Tool (ou o nome que você definiu)
+ConexaoExterna_Tool
 
 
 **Métodos Usados**
@@ -86,22 +87,33 @@ Use esta ferramenta para consultar documentos externos ou APIs. Ela executa uma 
 
 
 📸 **Screenshots da Jornada**
-[IMPORTANTE: Aqui você irá inserir os prints de tela capturados no Azure, seguindo o exemplo da colega. Os prints essenciais são:]
+
+
 Screen 1: Criação do Resource Group (rg-foundry-summarizer).
+
 Screen 2: Criação e deployment do Recurso Foundry (Hub) e do modelo (ex: gpt-4o-mini).
+
 Screen 3: Configuração do Agente (MeetingSummarizer) e inserção do System Prompt detalhado.
+
 Screen 4: Criação do Azure Logic App e definição do Gatilho HTTP POST (mostrando o Schema JSON).
+
 Screen 5: Adição da Logic App Action (registrar-resumo-reuniao) ao Agente, mostrando a configuração do Schema OpenAPI e o endpoint POST.
+
 Screen 6: Teste no Agents Playground, mostrando o Input (texto da reunião + pedido de registro), a chamada da Tool no log do agente e a Resposta Final.
 
 🔗 **Referências Utilizadas**
+
 [https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/?practice-assessment-type=certification] 
+
 [https://jubilant-trout-x5g49gwvvjgqfr7.github.dev/]
+
 [https://github.com/AZFRONTIERGIRLS/AZFrontierGirls-Duvidas/discussions]
+
 [https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview?view=foundry-classic]
 
 
 🎉 **Conclusão**
+
 O Meeting Summarizer está funcional, testado e integrado ao Logic Apps. Atende todos os requisitos do desafio, com foco na eficiência e na demonstração da capacidade de automação simples do Azure AI Foundry.
 
 
@@ -109,235 +121,7 @@ O Meeting Summarizer está funcional, testado e integrado ao Logic Apps. Atende 
 
 **Códigos do Agente:**
 
-{
-  "openapi": "3.0.3",
-  "info": {
-    "version": "1.0.0.0",
-    "title": "Conectar-atas-arquivos-abertos-externos",
-    "description": "Use esta ferramenta para consultar documentos externos ou APIs, permitindo buscar ou registrar dados (como a ata completa de uma reunião) em sistemas externos. Forneça a URI e o conteúdo necessário para a requisição."
-  },
-  "servers": [
-    {
-      "url": "https://prod-19.eastus2.logic.azure.com/workflows/8491583a7046464d89126dbc417135cc/triggers/When_a_HTTP_request_is_received/paths"
-    }
-  ],
-  "security": [
-    {
-      "sig": []
-    }
-  ],
-  "paths": {
-    "/invoke": {
-      "post": {
-        "description": "Use esta ferramenta para consultar documentos externos ou APIs, permitindo buscar ou registrar dados (como a ata completa de uma reunião) em sistemas externos. Forneça a URI e o conteúdo necessário para a requisição.",
-        "operationId": "When_a_HTTP_request_is_received-invoke",
-        "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "`2016-10-01` is the most common generally available version",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "2016-10-01"
-            },
-            "example": "2016-10-01"
-          },
-          {
-            "name": "sv",
-            "in": "query",
-            "description": "The version number",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            },
-            "example": "1.0"
-          },
-          {
-            "name": "sp",
-            "in": "query",
-            "description": "The permissions",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun"
-            },
-            "example": "%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The Logic App Response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "The Logic App Response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "HTTP_URI": {
-                    "description": "URI for HTTP Request",
-                    "type": "string"
-                  },
-                  "HTTP_request_content": {
-                    "description": "Content or Body of the HTTP Request",
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        }
-      }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "sig": {
-        "type": "apiKey",
-        "description": "The SHA 256 hash of the entire request URI with an internal key.",
-        "name": "sig",
-        "in": "query"
-      }
-    }
-  }
-}
 
 
 
-
-
-Código da Ferramenta de ConexaoExterna_Tool: "openapi": "3.0.3",
-  "info": {
-    "version": "1.0.0.0",
-    "title": "Conexao-Externa",
-    "description": "Ela executa uma requisição HTTP POST/GET em uma URI fornecida, permitindo buscar ou registrar dados (como a ata completa de uma reunião) em sistemas externos. Forneça a URI e o conteúdo necessário para a requisição. \n"
-  },
-  "servers": [
-    {
-      "url": "https://prod-15.eastus2.logic.azure.com/workflows/0a9d228299824065b5e14fe1d4d5304b/triggers/When_a_HTTP_request_is_received/paths"
-    }
-  ],
-  "security": [
-    {
-      "sig": []
-    }
-  ],
-  "paths": {
-    "/invoke": {
-      "post": {
-        "description": "Ela executa uma requisição HTTP POST/GET em uma URI fornecida, permitindo buscar ou registrar dados (como a ata completa de uma reunião) em sistemas externos. Forneça a URI e o conteúdo necessário para a requisição. \n",
-        "operationId": "When_a_HTTP_request_is_received-invoke",
-        "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "`2016-10-01` is the most common generally available version",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "2016-10-01"
-            },
-            "example": "2016-10-01"
-          },
-          {
-            "name": "sv",
-            "in": "query",
-            "description": "The version number",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            },
-            "example": "1.0"
-          },
-          {
-            "name": "sp",
-            "in": "query",
-            "description": "The permissions",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun"
-            },
-            "example": "%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The Logic App Response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "The Logic App Response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "HTTP_URI": {
-                    "description": "URI for HTTP Request",
-                    "type": "string"
-                  },
-                  "HTTP_request_content": {
-                    "description": "Content or Body of the HTTP Request",
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        }
-      }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "sig": {
-        "type": "apiKey",
-        "description": "The SHA 256 hash of the entire request URI with an internal key.",
-        "name": "sig",
-        "in": "query"
-      }
-    }
-  }
-}
+**Código da Ferramenta de ConexaoExterna_Tool:**
