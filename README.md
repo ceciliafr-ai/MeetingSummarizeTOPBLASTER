@@ -8,7 +8,7 @@ Este repositório contém todo o roteiro, conforme solicitado no desafio:
 
 Passos realizados
 
-Prints de tela (setup, fluxo e execução) [PDF]
+Prints de tela (setup, fluxo e execução) [https://drive.google.com/file/d/1w-2nB6x4acJHAMS4AzGJpLVq02svgm92/view?usp=sharing]
 
 Agente configurado
 
@@ -89,17 +89,7 @@ Use esta ferramenta para consultar documentos externos ou APIs. Ela executa uma 
 📸 **Screenshots da Jornada**
 
 
-Screen 1: Criação do Resource Group (rg-foundry-summarizer).
-
-Screen 2: Criação e deployment do Recurso Foundry (Hub) e do modelo (ex: gpt-4o-mini).
-
-Screen 3: Configuração do Agente (MeetingSummarizer) e inserção do System Prompt detalhado.
-
-Screen 4: Criação do Azure Logic App e definição do Gatilho HTTP POST (mostrando o Schema JSON).
-
-Screen 5: Adição da Logic App Action (registrar-resumo-reuniao) ao Agente, mostrando a configuração do Schema OpenAPI e o endpoint POST.
-
-Screen 6: Teste no Agents Playground, mostrando o Input (texto da reunião + pedido de registro), a chamada da Tool no log do agente e a Resposta Final.
+[https://drive.google.com/file/d/1w-2nB6x4acJHAMS4AzGJpLVq02svgm92/view?usp=sharing]
 
 🔗 **Referências Utilizadas**
 
