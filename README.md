@@ -3,7 +3,8 @@
 Assistente de resumo de reuniões criado no Azure AI Foundry. Inclui agente funcional, ação com Logic Apps via HTTP POST, testes no Playground e documentação do projeto para o desafio Azure Frontier Girls.
 
 📝 **Agente Meeting Summarizer TopBlaster — Projeto do Desafio Azure Frontier Girls**
-Bem-vinda ao repositório do Agente Meeting Summarizer TopBlaster, meu agente resumidor criado no Azure AI Foundry. Aqui está toda a jornada
+
+Bem-vinda ao repositório do Agente Meeting Summarizer TopBlaster, meu agente resumidor criado no Azure AI Foundry. Abaixo segue toda a jornada
 Este repositório contém todo o roteiro, conforme solicitado no desafio:
 
 Passos realizados
